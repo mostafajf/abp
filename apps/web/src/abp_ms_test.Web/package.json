@@ -1,0 +1,11 @@
+{
+  "version": "0.1.0",
+  "name": "abp_ms_testWeb",
+  "private": true,
+  "dependencies": {
+    "@volo/abp.aspnetcore.mvc.ui.theme.leptonx": "~3.0.1",
+    "@volo/identity": "~8.0.2",
+    "@abp/chart.js": "~8.0.2",
+    "@volo/language-management": "~8.0.2"
+  }
+}

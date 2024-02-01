@@ -1,0 +1,25 @@
+config:
+  selfUrl: # https://blazor-server.abp_ms_test.dev
+  gatewayUrl: # http://abp_ms_test-st-gateway-web
+  authServer:
+    authority: # http://abp_ms_test-st-authserver
+    requireHttpsMetadata: # "false"
+    isOnK8s: # "true"
+    metaAddress: # http://abp_ms_test-st-authserver
+  dotnetEnv: # 
+  redisHost: #
+  rabbitmqHost: #
+  elasticsearchUrl: #
+  stringEncryptionDefaultPassPhrase: gsKnGZ041HLL4IM8
+  AbpLicenseCode: #
+
+ingress:
+  host: # blazor-server.abp_ms_test.dev
+  tlsSecret: abp_ms_test-tls
+
+image:
+  repository: mycompanyname/abp_ms_test-app-blazor-server
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env: {}   

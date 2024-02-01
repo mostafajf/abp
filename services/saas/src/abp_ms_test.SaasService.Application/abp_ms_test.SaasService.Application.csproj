@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Saas.Host.Application" Version="8.0.2" />
+        <PackageReference Include="Volo.Saas.Tenant.Application" Version="8.0.2" />
+        <PackageReference Include="Volo.Payment.Admin.Application" Version="8.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\abp_ms_test.SaasService.Domain\abp_ms_test.SaasService.Domain.csproj" />
+        <ProjectReference Include="..\abp_ms_test.SaasService.Application.Contracts\abp_ms_test.SaasService.Application.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>

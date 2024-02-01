@@ -1,0 +1,13 @@
+{
+  "folders": {
+    "items": {
+      "src": {}
+    }
+  },
+  "packages": {
+    "abp_ms_test.AuthServer": {
+      "path": "src/abp_ms_test.AuthServer/abp_ms_test.AuthServer.abppkg",
+      "folder": "src"
+    }
+  }
+}

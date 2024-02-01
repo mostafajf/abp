@@ -1,0 +1,6 @@
+config:
+  elasticsearchUrl: http://abp_ms_test-st-elasticsearch:9200
+
+ingress:
+  host: kibana-abp_ms_test.dev
+  tlsSecret: abp_ms_test-tls

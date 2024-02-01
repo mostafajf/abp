@@ -1,0 +1,13 @@
+{
+  "folders": {
+    "items": {
+      "src": {}
+    }
+  },
+  "packages": {
+    "abp_ms_test.WebGateway": {
+      "path": "src/abp_ms_test.WebGateway/abp_ms_test.WebGateway.abppkg",
+      "folder": "src"
+    }
+  }
+}

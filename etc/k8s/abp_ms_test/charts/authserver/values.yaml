@@ -1,0 +1,33 @@
+config:
+  selfUrl: # https://authserver.abp_ms_test.dev
+  corsOrigins: #
+  allowedRedirectUrls: #
+  disablePii: #
+  identityService:
+    connString: # 
+  administrationService:
+    connString: # 
+  saasService:
+    connString: #     
+  authServer:
+    authority: #
+    requireHttpsMetadata: #
+    swaggerClientId: #
+  dotnetEnv: # 
+  redisHost: #
+  rabbitmqHost: #
+  elasticsearchUrl: #
+  stringEncryptionDefaultPassPhrase: gsKnGZ041HLL4IM8
+  AbpLicenseCode: #
+
+ingress:
+  host: authserver.abp_ms_test.dev
+  tlsSecret: abp_ms_test-tls
+
+image:
+  repository: mycompanyname/abp_ms_test-app-authserver
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env: {}
+    

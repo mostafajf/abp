@@ -1,0 +1,74 @@
+name: abp_ms_test
+services:
+- name: auth-server
+  project: apps/auth-server/src/abp_ms_test.AuthServer/abp_ms_test.AuthServer.csproj
+  bindings:
+    - protocol: https
+      port: 44322
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=521f740b-858e-42c9-aee6-23bde3ba54be
+- name: administration-service
+  project: services/administration/src/abp_ms_test.AdministrationService.HttpApi.Host/abp_ms_test.AdministrationService.HttpApi.Host.csproj
+  bindings:
+    - protocol: https
+      port: 44367
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=521f740b-858e-42c9-aee6-23bde3ba54be
+- name: identity-service
+  project: services/identity/src/abp_ms_test.IdentityService.HttpApi.Host/abp_ms_test.IdentityService.HttpApi.Host.csproj
+  bindings:
+    - protocol: https
+      port: 44388
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=521f740b-858e-42c9-aee6-23bde3ba54be
+- name: saas-service
+  project: services/saas/src/abp_ms_test.SaasService.HttpApi.Host/abp_ms_test.SaasService.HttpApi.Host.csproj
+  bindings:
+    - protocol: https
+      port: 44381
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=521f740b-858e-42c9-aee6-23bde3ba54be
+- name: product-service
+  project: services/product/src/abp_ms_test.ProductService.HttpApi.Host/abp_ms_test.ProductService.HttpApi.Host.csproj
+  bindings:
+    - protocol: https
+      port: 44361
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=521f740b-858e-42c9-aee6-23bde3ba54be
+- name: web-gateway
+  project: gateways/web/src/abp_ms_test.WebGateway/abp_ms_test.WebGateway.csproj
+  bindings:
+    - protocol: https
+      port: 44325
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=521f740b-858e-42c9-aee6-23bde3ba54be  
+- name: web-public-gateway
+  project: gateways/web-public/src/abp_ms_test.PublicWebGateway/abp_ms_test.PublicWebGateway.csproj
+  bindings:
+    - protocol: https
+      port: 44353
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=521f740b-858e-42c9-aee6-23bde3ba54be
+- name: web
+  project: apps/web/src/abp_ms_test.Web/abp_ms_test.Web.csproj
+  bindings:
+    - protocol: https
+      port: 44321
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=521f740b-858e-42c9-aee6-23bde3ba54be
+- name: public-web
+  project: apps/public-web/src/abp_ms_test.PublicWeb/abp_ms_test.PublicWeb.csproj
+  bindings:
+    - protocol: https
+      port: 44335
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=521f740b-858e-42c9-aee6-23bde3ba54be

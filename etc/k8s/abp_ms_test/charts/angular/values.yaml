@@ -1,0 +1,21 @@
+config:
+  selfUrl: # https://angular.abp_ms_test.dev
+  gatewayUrl: # https://gateway-web.abp_ms_test.dev
+  authServer:
+      authority: # https://authserver.abp_ms_test.dev
+      requireHttpsMetadata: # false
+      responseType: "code"
+      strictDiscoveryDocumentValidation: false
+      skipIssuerCheck: true
+  AbpLicenseCode: #
+
+ingress:
+  host: # angular.abp_ms_test.dev
+  tlsSecret: abp_ms_test-tls
+
+image:
+  repository: mycompanyname/abp_ms_test-app-angular
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env: {}

@@ -1,0 +1,54 @@
+{
+  "applications": {
+    "Docker-Dependencies": {
+      "type": "cli",
+      "workingDirectory": "../docker",
+      "startCommand": "./up.ps1",
+      "stopCommand": "./down.ps1"
+    },
+    "abp_ms_test.AuthServer": {
+      "type": "dotnet-project",
+      "path": "../../apps/auth-server/src/abp_ms_test.AuthServer/abp_ms_test.AuthServer.csproj"
+    },
+    "abp_ms_test.Blazor": {
+      "type": "dotnet-project",
+      "path": "../../apps/blazor/src/abp_ms_test.Blazor/abp_ms_test.Blazor.csproj"
+    },
+    "abp_ms_test.Blazor.Server": {
+      "type": "dotnet-project",
+      "path": "../../apps/blazor/src/abp_ms_test.Blazor.Server/abp_ms_test.Blazor.Server.csproj"
+    },
+    "abp_ms_test.PublicWeb": {
+      "type": "dotnet-project",
+      "path": "../../apps/public-web/src/abp_ms_test.PublicWeb/abp_ms_test.PublicWeb.csproj"
+    },
+    "abp_ms_test.Web": {
+      "type": "dotnet-project",
+      "path": "../../apps/web/src/abp_ms_test.Web/abp_ms_test.Web.csproj"
+    },
+    "abp_ms_test.AdministrationService.HttpApi.Host": {
+      "type": "dotnet-project",
+      "path": "../../services/administration/src/abp_ms_test.AdministrationService.HttpApi.Host/abp_ms_test.AdministrationService.HttpApi.Host.csproj"
+    },
+    "abp_ms_test.IdentityService.HttpApi.Host": {
+      "type": "dotnet-project",
+      "path": "../../services/identity/src/abp_ms_test.IdentityService.HttpApi.Host/abp_ms_test.IdentityService.HttpApi.Host.csproj"
+    },
+    "abp_ms_test.ProductService.HttpApi.Host": {
+      "type": "dotnet-project",
+      "path": "../../services/product/src/abp_ms_test.ProductService.HttpApi.Host/abp_ms_test.ProductService.HttpApi.Host.csproj"
+    },
+    "abp_ms_test.SaasService.HttpApi.Host": {
+      "type": "dotnet-project",
+      "path": "../../services/saas/src/abp_ms_test.SaasService.HttpApi.Host/abp_ms_test.SaasService.HttpApi.Host.csproj"
+    },
+    "abp_ms_test.WebGateway": {
+      "type": "dotnet-project",
+      "path": "../../gateways/web/src/abp_ms_test.WebGateway/abp_ms_test.WebGateway.csproj"
+    },
+    "abp_ms_test.PublicWebGateway": {
+      "type": "dotnet-project",
+      "path": "../../gateways/web-public/src/abp_ms_test.PublicWebGateway/abp_ms_test.PublicWebGateway.csproj"
+    }
+  }
+}

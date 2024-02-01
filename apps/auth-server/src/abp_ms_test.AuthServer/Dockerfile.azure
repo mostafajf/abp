@@ -1,0 +1,32 @@
+ARG BASE_IMAGE=base
+
+FROM ${BASE_IMAGE} AS base
+
+WORKDIR /app
+
+WORKDIR /app/volo/abp/templates/ms/apps/auth-server/src/abp_ms_test.AuthServer
+
+RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
+    dotnet publish \
+    --no-restore \
+    -c Release -o bin/Release/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS publish
+WORKDIR /app
+EXPOSE 80
+ENV ASPNETCORE_URLS=http://+:80
+COPY --from=base /app/volo/abp/templates/ms/apps/auth-server/src/abp_ms_test.AuthServer/bin/Release/publish .
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+COPY --from=publish /app .
+COPY --from=base /app/volo/abp/templates/ms/NuGet.Config .
+RUN dotnet dev-certs https -v -ep openiddict.pfx -p acb36edc-24ab-4f8a-94ce-61bab45a8287
+
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+COPY --from=build /src .
+
+ENTRYPOINT ["dotnet", "abp_ms_test.AuthServer.dll"]
+

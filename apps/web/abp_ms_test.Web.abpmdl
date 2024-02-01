@@ -1,0 +1,13 @@
+{
+  "folders": {
+    "items": {
+      "src": {}
+    }
+  },
+  "packages": {
+    "abp_ms_test.Web": {
+      "path": "src/abp_ms_test.Web/abp_ms_test.Web.abppkg",
+      "folder": "src"
+    }
+  }
+}

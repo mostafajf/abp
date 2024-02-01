@@ -1,0 +1,31 @@
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS builder
+WORKDIR /src
+
+COPY "abp_ms_test.sln" "abp_ms_test.sln"
+
+# Applications
+COPY "apps/auth-server/src/abp_ms_test.AuthServer/abp_ms_test.AuthServer.csproj" "apps/auth-server/src/abp_ms_test.AuthServer/abp_ms_test.AuthServer.csproj"
+COPY "apps/public-web/src/abp_ms_test.PublicWeb/abp_ms_test.PublicWeb.csproj" "apps/public-web/src/abp_ms_test.PublicWeb/abp_ms_test.PublicWeb.csproj"
+COPY "apps/web/src/abp_ms_test.Web/abp_ms_test.Web.csproj" "apps/web/src/abp_ms_test.Web/abp_ms_test.Web.csproj"
+# Shared Projects
+COPY "shared/abp_ms_test.DbMigrator/abp_ms_test.DbMigrator.csproj" "shared/abp_ms_test.DbMigrator/abp_ms_test.DbMigrator.csproj"
+COPY "shared/abp_ms_test.Shared.Hosting/abp_ms_test.Shared.Hosting.csproj" "shared/abp_ms_test.Shared.Hosting/abp_ms_test.Shared.Hosting.csproj"
+COPY "shared/abp_ms_test.Shared.Hosting.Gateways/abp_ms_test.Shared.Hosting.Gateways.csproj" "shared/abp_ms_test.Shared.Hosting.Gateways/abp_ms_test.Shared.Hosting.Gateways.csproj"
+COPY "shared/abp_ms_test.Shared.Hosting.Microservices/abp_ms_test.Shared.Hosting.Microservices.csproj" "shared/abp_ms_test.Shared.Hosting.Microservices/abp_ms_test.Shared.Hosting.Microservices.csproj"
+COPY "shared/abp_ms_test.Shared.Hosting.AspNetCore/abp_ms_test.Shared.Hosting.AspNetCore.csproj" "shared/abp_ms_test.Shared.Hosting.AspNetCore/abp_ms_test.Shared.Hosting.AspNetCore.csproj"
+COPY "shared/abp_ms_test.Shared.Hosting/abp_ms_test.Shared.Hosting.csproj" "shared/abp_ms_test.Shared.Hosting/abp_ms_test.Shared.Hosting.csproj"
+COPY "shared/abp_ms_test.Shared.Localization/abp_ms_test.Shared.Localization.csproj" "shared/abp_ms_test.Shared.Localization/abp_ms_test.Shared.Localization.csproj"
+
+# Microservices
+COPY "services/administration/src/abp_ms_test.AdministrationService.HttpApi.Host/abp_ms_test.AdministrationService.HttpApi.Host.csproj" "services/administration/src/abp_ms_test.AdministrationService.HttpApi.Host/abp_ms_test.AdministrationService.HttpApi.Host.csproj"
+COPY "services/identity/src/abp_ms_test.IdentityService.HttpApi.Host/abp_ms_test.IdentityService.HttpApi.Host.csproj" "services/identity/src/abp_ms_test.IdentityService.HttpApi.Host/abp_ms_test.IdentityService.HttpApi.Host.csproj"
+COPY "services/saas/src/abp_ms_test.SaasService.HttpApi.Host/abp_ms_test.SaasService.HttpApi.Host.csproj" "services/saas/src/abp_ms_test.SaasService.HttpApi.Host/abp_ms_test.SaasService.HttpApi.Host.csproj"
+COPY "services/product/src/abp_ms_test.ProductService.HttpApi.Host/abp_ms_test.ProductService.HttpApi.Host.csproj" "services/product/src/abp_ms_test.ProductService.HttpApi.Host/abp_ms_test.ProductService.HttpApi.Host.csproj"
+# Gateways
+COPY "gateways/web/src/abp_ms_test.WebGateway/abp_ms_test.WebGateway.csproj" "gateways/web/src/abp_ms_test.WebGateway/abp_ms_test.WebGateway.csproj"
+COPY "gateways/web-public/src/abp_ms_test.PublicWebGateway/abp_ms_test.PublicWebGateway.csproj" "gateways/web-public/src/abp_ms_test.PublicWebGateway/abp_ms_test.PublicWebGateway.csproj"
+
+COPY "NuGet.Config" "NuGet.Config"
+
+RUN dotnet restore "abp_ms_test.sln"

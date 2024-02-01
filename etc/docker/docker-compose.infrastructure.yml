@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management-alpine
+    networks:
+      - abp_ms_test-network
+      
+  redis:
+    container_name: redis
+    image: redis:alpine
+    networks:
+      - abp_ms_test-network
+      
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.3
+    # volumes:
+    #   - esdata:/usr/share/elasticsearch/data
+    networks:
+      - abp_ms_test-network
+      
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:8.5.3
+    depends_on:
+      - elasticsearch
+    networks:
+      - abp_ms_test-network
+    
+  sql-server-db:
+    container_name: sql-server-db
+    image: mcr.microsoft.com/azure-sql-edge
+    volumes:
+      - sqldata:/var/opt/mssql
+    networks:
+      - abp_ms_test-network
+ 
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    volumes:
+      - ../grafana/storage:/var/lib/grafana
+    networks:
+      - abp_ms_test-network
+      
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    volumes:
+      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ../prometheus/storage:/prometheus
+    networks:
+      - abp_ms_test-network
+      
+volumes:
+  esdata:
+  sqldata:
+networks:
+  abp_ms_test-network:
+    external: true

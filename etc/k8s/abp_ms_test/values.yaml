@@ -1,0 +1,370 @@
+# auth-server sub-chart override
+authserver:
+  config:
+    selfUrl: https://authserver.abp_ms_test.dev
+    corsOrigins: https://angular.abp_ms_test.dev,https://blazor.abp_ms_test.dev,https://gateway-web.abp_ms_test.dev,https://gateway-public.abp_ms_test.dev,https://identity.abp_ms_test.dev,https://administration.abp_ms_test.dev,https://saas.abp_ms_test.dev,https://product.abp_ms_test.dev
+    allowedRedirectUrls: https://angular.abp_ms_test.dev,http://angular.abp_ms_test.dev,https://blazor.abp_ms_test.dev,http://blazor.abp_ms_test.dev,https://blazor.abp_ms_test.dev,https://blazor-server.abp_ms_test.dev,https://web.abp_ms_test.dev
+    disablePii: "false"
+    identityService:
+      connString: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Identity;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+    administrationService:
+      connString: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Administration;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+    saasService:
+      connString: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Saas;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+    authServer:
+      authority: https://authserver.abp_ms_test.dev
+      requireHttpsMetadata: "false"
+      swaggerClientId: WebGateway_Swagger
+    dotnetEnv: Staging
+    redisHost: abp_ms_test-st-redis
+    rabbitmqHost: abp_ms_test-st-rabbitmq
+    elasticsearchUrl: http://abp_ms_test-st-elasticsearch
+  ingress:
+    host: authserver.abp_ms_test.dev
+  image:
+    repository: mycompanyname/abp_ms_test-app-authserver
+    tag: latest
+
+# identity-service sub-chart override
+identity:
+  config:
+    selfUrl: https://identity.abp_ms_test.dev
+    corsOrigins: https://gateway-web.abp_ms_test.dev
+    connectionStrings:
+      identityService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Identity;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+      administrationService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Administration;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+      saasService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Saas;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+    authServer:
+      authority: http://abp_ms_test-st-authserver
+      requireHttpsMetadata: "false"
+      metadataAddress: https://authserver.abp_ms_test.dev
+      swaggerClientId: WebGateway_Swagger
+    dotnetEnv: Staging
+    redisHost: abp_ms_test-st-redis
+    rabbitmqHost: abp_ms_test-st-rabbitmq
+    elasticsearchUrl: http://abp_ms_test-st-elasticsearch
+  openIdDict: #Seed applications and resources
+    applications:
+      authServerRootUrl: https://authserver.abp_ms_test.dev
+      angularRootUrl: https://angular.abp_ms_test.dev
+      webRootUrl: https://web.abp_ms_test.dev
+      blazorRootUrl: https://blazor.abp_ms_test.dev
+      blazorServerRootUrl: https://blazor-server.abp_ms_test.dev
+      publicWebRootUrl: https://abp_ms_test.dev
+      webGatewayRootUrl: https://gateway-web.abp_ms_test.dev
+      publicWebGatewayRootUrl: https://gateway-public.abp_ms_test.dev
+    resources:  
+      accountServiceRootUrl: https://authserver.abp_ms_test.dev
+      administrationServiceRootUrl: https://administration.abp_ms_test.dev
+      identityServiceRootUrl: https://identity.abp_ms_test.dev
+      saasServiceRootUrl: https://saas.abp_ms_test.dev
+      productServiceRootUrl: https://product.abp_ms_test.dev
+  ingress:
+    host: identity.abp_ms_test.dev
+  image:
+    repository: mycompanyname/abp_ms_test-service-identity
+    tag: latest
+
+# administration-service sub-chart override
+administration:
+  config:
+    selfUrl: https://administration.abp_ms_test.dev
+    corsOrigins: https://gateway-web.abp_ms_test.dev,https://gateway-public.abp_ms_test.dev
+    connectionStrings:
+      administrationService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Administration;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+      saasService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Saas;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"    
+    authServer:
+      authority: http://abp_ms_test-st-authserver
+      requireHttpsMetadata: "false"
+      metadataAddress: https://authserver.abp_ms_test.dev
+      swaggerClientId: WebGateway_Swagger
+    remoteServices:
+      abpIdentityBaseUrl: http://abp_ms_test-st-identity
+      useCurrentToken: "false"   
+    dotnetEnv: Staging
+    redisHost: abp_ms_test-st-redis
+    rabbitmqHost: abp_ms_test-st-rabbitmq
+    elasticsearchUrl: http://abp_ms_test-st-elasticsearch
+  synchedCommunication: # Used for server-to-server (client-credentials) communication with identityService for user permissions
+    authority: http://abp_ms_test-st-authserver
+    requireHttps: "false"
+    validateIssuerName: "false"
+    validateEndpoints: "false"
+  ingress:
+    host: administration.abp_ms_test.dev
+  image:
+    repository: mycompanyname/abp_ms_test-service-administration
+    tag: latest
+
+# saas-service sub-chart override
+saas:
+  config:
+    selfUrl: https://saas.abp_ms_test.dev
+    corsOrigins: https://gateway-web.abp_ms_test.dev
+    connectionStrings:
+      administrationService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Administration;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+      saasService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Saas;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+    authServer:
+      authority: http://abp_ms_test-st-authserver
+      requireHttpsMetadata: "false"
+      metadataAddress: https://authserver.abp_ms_test.dev
+      swaggerClientId: WebGateway_Swagger
+    dotnetEnv: Staging
+    redisHost: abp_ms_test-st-redis
+    rabbitmqHost: abp_ms_test-st-rabbitmq
+    elasticsearchUrl: http://abp_ms_test-st-elasticsearch
+  ingress:
+    host: saas.abp_ms_test.dev
+  image:
+    repository: mycompanyname/abp_ms_test-service-saas
+    tag: latest  
+
+# product-service sub-chart override
+product:
+  config:
+    selfUrl: https://product.abp_ms_test.dev
+    corsOrigins: https://gateway-web.abp_ms_test.dev,https://gateway-public.abp_ms_test.dev
+    connectionStrings:
+      productService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_ProductService;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+      administrationService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Administration;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+      saasService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Saas;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+    authServer:
+      authority: http://abp_ms_test-st-authserver
+      requireHttpsMetadata: "false"
+      metadataAddress: https://authserver.abp_ms_test.dev
+      swaggerClientId: WebGateway_Swagger
+    dotnetEnv: Staging
+    redisHost: abp_ms_test-st-redis
+    rabbitmqHost: abp_ms_test-st-rabbitmq
+    elasticsearchUrl: http://abp_ms_test-st-elasticsearch
+  ingress:
+    host: product.abp_ms_test.dev
+  image:
+    repository: mycompanyname/abp_ms_test-service-product
+    tag: latest
+
+# gateway-web sub-chart override
+gateway-web:
+  config:
+    selfUrl: https://gateway-web.abp_ms_test.dev
+    corsOrigins: https://angular.abp_ms_test.dev,https://blazor.abp_ms_test.dev
+    authServer:
+      authority: http://abp_ms_test-st-authserver
+      requireHttpsMetadata: "false"
+      metadataAddress: https://authserver.abp_ms_test.dev
+      swaggerClientId: WebGateway_Swagger      
+    dotnetEnv: Staging
+    redisHost: abp_ms_test-st-redis
+    rabbitmqHost: abp_ms_test-st-rabbitmq
+    elasticsearchUrl: http://abp_ms_test-st-elasticsearch
+  reRoutes:
+    accountService:
+      url: http://abp_ms_test-st-authserver
+    saasService:
+      url: http://abp_ms_test-st-saas
+    administrationService:
+      url: http://abp_ms_test-st-administration
+    identityService:
+      url: http://abp_ms_test-st-identity
+    productService:
+      url: http://abp_ms_test-st-product
+  ingress:
+    host: gateway-web.abp_ms_test.dev
+  image:
+    repository: mycompanyname/abp_ms_test-gateway-web
+    tag: latest
+    pullPolicy: IfNotPresent
+
+# gateway-web-public sub-chart override
+gateway-web-public:
+  config:
+    selfUrl: https://gateway-public.abp_ms_test.dev
+    authServer:
+      authority: http://abp_ms_test-st-authserver
+      requireHttpsMetadata: "false"
+      metadataAddress: https://authserver.abp_ms_test.dev
+      swaggerClientId: WebGateway_Swagger      
+    dotnetEnv: Staging 
+    redisHost: abp_ms_test-st-redis
+    rabbitmqHost: abp_ms_test-st-rabbitmq
+    elasticsearchUrl: http://abp_ms_test-st-elasticsearch
+  reRoutes:
+    accountService:
+      url: http://abp_ms_test-st-authserver
+    saasService:
+      url: http://abp_ms_test-st-saas
+    administrationService:
+      url: http://abp_ms_test-st-administration
+    productService:
+      url: http://abp_ms_test-st-product  
+  ingress:
+    host: gateway-public.abp_ms_test.dev
+    tlsSecret: abp_ms_test-tls
+  image:
+    repository: mycompanyname/abp_ms_test-gateway-web-public
+    tag: latest
+    pullPolicy: IfNotPresent
+
+kibana:
+  config:
+    elasticsearchUrl: http://abp_ms_test-st-elasticsearch:9200
+  ingress:
+    host: kibana.abp_ms_test.dev
+    tlsSecret: abp_ms_test-tls
+
+# dbmigrator sub-chart override
+dbmigrator:
+  config:
+    connectionStrings:
+      identityService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Identity;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+      administrationService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Administration;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+      saasService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_Saas;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+      productService: "Server=abp_ms_test-st-sqldb,1433;Database=abp_ms_test_ProductService;User Id=sa;password=myPassw@rd;TrustServerCertificate=True"
+    dotnetEnv: Staging
+    elasticsearchUrl: http://abp_ms_test-st-elasticsearch
+    redisHost: abp_ms_test-st-redis
+  openIdDict:
+    applications:
+      authServerRootUrl: https://authserver.abp_ms_test.dev
+      angularRootUrl: https://angular.abp_ms_test.dev
+      webRootUrl: https://web.abp_ms_test.dev
+      blazorRootUrl: https://blazor.abp_ms_test.dev
+      blazorServerRootUrl: https://blazor-server.abp_ms_test.dev
+      publicWebRootUrl: https://abp_ms_test.dev
+      webGatewayRootUrl: https://gateway-web.abp_ms_test.dev
+      publicWebGatewayRootUrl: https://gateway-public.abp_ms_test.dev
+    resources:  
+      accountServiceRootUrl: https://authserver.abp_ms_test.dev
+      administrationServiceRootUrl: https://administration.abp_ms_test.dev
+      identityServiceRootUrl: https://identity.abp_ms_test.dev
+      saasServiceRootUrl: https://saas.abp_ms_test.dev
+      productServiceRootUrl: https://product.abp_ms_test.dev
+  image:
+    repository: mycompanyname/abp_ms_test-db-migrator
+    tag: latest
+    pullPolicy: IfNotPresent  
+
+# Public Web application sub-chart override
+publicweb:
+  config:
+    selfUrl: https://abp_ms_test.dev
+    gatewayUrl: http://abp_ms_test-st-gateway-web-public
+    authServer:
+      authority: https://authserver.abp_ms_test.dev # should be domain on production (https://auth.mydomain.com)
+      requireHttpsMetadata: "false"
+      isOnK8s: "true"
+      metaAddress: http://abp_ms_test-st-authserver # should be container on production (http://abp_ms_test-az-authserver)
+    dotnetEnv: Staging 
+    redisHost: abp_ms_test-st-redis
+    rabbitmqHost: abp_ms_test-st-rabbitmq
+    elasticsearchUrl: http://abp_ms_test-st-elasticsearch
+  ingress:
+    host: abp_ms_test.dev
+    tlsSecret: abp_ms_test-tls
+  image:
+    repository: mycompanyname/abp_ms_test-app-public-web
+    tag: latest
+    pullPolicy: IfNotPresent
+# Web(MVC) back-office application sub-chart override
+web:
+  config:
+    selfUrl: https://web.abp_ms_test.dev
+    gatewayUrl: http://abp_ms_test-st-gateway-web
+    authServer:
+      authority: https://authserver.abp_ms_test.dev # should be domain on production (https://auth.mydomain.com)
+      requireHttpsMetadata: "false"
+      isOnK8s: "true"
+      metaAddress: http://abp_ms_test-st-authserver # should be container on production (http://abp_ms_test-az-authserver)
+    dotnetEnv: Staging 
+    redisHost: abp_ms_test-st-redis
+    rabbitmqHost: abp_ms_test-st-rabbitmq
+    elasticsearchUrl: http://abp_ms_test-st-elasticsearch
+  ingress:
+    host: web.abp_ms_test.dev
+    tlsSecret: abp_ms_test-tls
+  image:
+    repository: mycompanyname/abp_ms_test-app-web
+    tag: latest
+    pullPolicy: IfNotPresent
+# Default values for abp_ms_test.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

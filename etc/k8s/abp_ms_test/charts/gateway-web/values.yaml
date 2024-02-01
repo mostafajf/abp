@@ -1,0 +1,36 @@
+config:
+  selfUrl: # https://gateway-web.abp_ms_test.dev
+  corsOrigins: # https://abp_ms_test-st-angular
+  globalConfigurationBaseUrl: # http://abp_ms_test-st-gateway-web
+  authServer:
+    authority: # http://abp_ms_test-st-authserver
+    requireHttpsMetadata: # "false"
+    metadataAddress: # https://authserver.abp_ms_test.dev/.well-known/openid-configuration
+    swaggerClientId: # WebGateway_Swagger
+  dotnetEnv: # 
+  redisHost: #
+  rabbitmqHost: #
+  elasticsearchUrl: #
+  AbpLicenseCode: #
+  
+reRoutes:
+  accountService:
+    url: http://abp_ms_test-st-authserver
+  saasService:
+    url: http://saas-st-administration
+  administrationService:
+    url: http://abp_ms_test-st-administration
+  identityService:
+    url: http://abp_ms_test-st-identity
+  productService:
+    url: http://abp_ms_test-st-product
+ingress:
+  host: # gateway-web.abp_ms_test.dev
+  tlsSecret: abp_ms_test-tls
+
+image:
+  repository: mycompanyname/abp_ms_test-gateway-web
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env: {}

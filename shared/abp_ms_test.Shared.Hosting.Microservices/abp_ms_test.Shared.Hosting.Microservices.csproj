@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\abp_ms_test.Shared.Hosting.AspNetCore\abp_ms_test.Shared.Hosting.AspNetCore.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="8.0.0" />
+        <PackageReference Include="DistributedLock.Redis" Version="1.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="8.0.2" />
+        <PackageReference Include="Volo.Abp.AspNetCore.MultiTenancy" Version="8.0.2" />
+        <PackageReference Include="Volo.Abp.EventBus.RabbitMQ" Version="8.0.2" />
+        <PackageReference Include="Volo.Abp.BackgroundJobs.RabbitMQ" Version="8.0.2" />
+        <PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="8.0.2" />
+        <PackageReference Include="Volo.Abp.DistributedLocking" Version="8.0.2" />
+<!--        Un-comment if you are using mongodb in any microservice -->
+<!--        <ProjectReference Include="..\..\..\..\..\..\abp\framework\src\Volo.Abp.MongoDB\Volo.Abp.MongoDB.csproj" />-->
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\services\administration\src\abp_ms_test.AdministrationService.EntityFrameworkCore\abp_ms_test.AdministrationService.EntityFrameworkCore.csproj" />
+        <ProjectReference Include="..\..\services\saas\src\abp_ms_test.SaasService.EntityFrameworkCore\abp_ms_test.SaasService.EntityFrameworkCore.csproj" />
+    </ItemGroup>
+
+</Project>

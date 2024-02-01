@@ -1,0 +1,37 @@
+config:
+  selfUrl: # https://administration.abp_ms_test.dev
+  corsOrigins: #
+  connectionStrings:
+    administrationService: #
+    saasService: #
+  authServer:
+    authority: # http://abp_ms_test-st-authserver
+    requireHttpsMetadata: "false"
+    metadataAddress: # http://admin.abp_ms_test.dev/.well-known/openid-configuration
+    swaggerClientId: WebGateway_Swagger
+  remoteServices:
+    abpIdentityBaseUrl: #
+    useCurrentToken: "false"
+  dotnetEnv: #
+  redisHost: #
+  rabbitmqHost: #
+  elasticsearchUrl: #
+  stringEncryptionDefaultPassPhrase: gsKnGZ041HLL4IM8
+  AbpLicenseCode: #
+
+synchedCommunication:
+  authority: # https://admin.abp_ms_test.dev
+  requireHttps: #
+  validateIssuerName: #
+  validateEndpoints: #
+
+ingress:
+  host: # abp_ms_test-st-administration
+  tlsSecret: abp_ms_test-tls
+
+image:
+  repository: mycompanyname/abp_ms_test-service-administration
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env: {}

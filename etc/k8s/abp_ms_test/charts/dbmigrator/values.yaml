@@ -1,0 +1,35 @@
+config:
+  connectionStrings:
+    identityService: #
+    administrationService: #
+    saasService: #
+    productService: #
+  dotnetEnv: Staging
+  redisHost: #
+  elasticsearchUrl: #
+  AbpLicenseCode: #
+
+# Seeded applications and resources 
+openIdDict:
+  applications:
+    authServerRootUrl: #
+    angularRootUrl: #
+    webRootUrl: #
+    blazorRootUrl: #
+    blazorServerRootUrl: #
+    publicWebRootUrl: #
+    webGatewayRootUrl: #
+    publicWebGatewayRootUrl: #
+  resources:  
+    accountServiceRootUrl: #
+    administrationServiceRootUrl: #
+    identityServiceRootUrl: #
+    saasServiceRootUrl: #
+    productServiceRootUrl: #
+
+image:
+  repository: mycompanyname/abp_ms_test-db-migrator
+  tag: latest
+  pullPolicy: IfNotPresent
+  
+env: {}  

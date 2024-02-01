@@ -1,0 +1,22 @@
+ARG BASE_IMAGE=base
+
+FROM ${BASE_IMAGE} AS base
+
+WORKDIR /app
+
+WORKDIR /app/volo/abp/templates/ms/services/saas/src/abp_ms_test.SaasService.HttpApi.Host
+
+RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
+    dotnet publish \
+    --no-restore \
+    -c Release -o bin/Release/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS publish
+
+WORKDIR /app
+EXPOSE 80
+ENV ASPNETCORE_URLS=http://+:80
+COPY --from=base /app/volo/abp/templates/ms/services/saas/src/abp_ms_test.SaasService.HttpApi.Host/bin/Release/publish .
+COPY --from=base /app/volo/abp/templates/ms/NuGet.Config .
+
+ENTRYPOINT ["dotnet", "abp_ms_test.SaasService.HttpApi.Host.dll"]

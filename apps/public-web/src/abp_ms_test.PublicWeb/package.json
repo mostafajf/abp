@@ -1,0 +1,8 @@
+{
+  "version": "0.1.0",
+  "name": "abp_ms_testPublicWeb",
+  "private": true,
+  "dependencies": {
+    "@volo/abp.aspnetcore.mvc.ui.theme.lepton": "~8.0.2"
+  }
+}

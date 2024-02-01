@@ -1,0 +1,59 @@
+{
+  "folders": {
+    "items": {
+      "apps": {},
+      "gateways": {},
+      "services": {}
+    }
+  },
+  "modules": {
+    "abp_ms_test": {
+      "path": "abp_ms_test.abpmdl"
+    },
+    "abp_ms_test.AuthServer": {
+      "path": "apps/auth-server/abp_ms_test.AuthServer.abpmdl",
+      "folder": "apps"
+    },
+    "abp_ms_test.Blazor": {
+      "path": "apps/blazor/abp_ms_test.Blazor.abpmdl",
+      "folder": "apps"
+    },
+    "abp_ms_test.PublicWeb": {
+      "path": "apps/public-web/abp_ms_test.PublicWeb.abpmdl",
+      "folder": "apps"
+    },
+    "abp_ms_test.Web": {
+      "path": "apps/web/abp_ms_test.Web.abpmdl",
+      "folder": "apps"
+    },
+    "abp_ms_test.WebGateway": {
+      "path": "gateways/web/abp_ms_test.WebGateway.abpmdl",
+      "folder": "gateways"
+    },
+    "abp_ms_test.PublicWebGateway": {
+      "path": "gateways/web-public/abp_ms_test.PublicWebGateway.abpmdl",
+      "folder": "gateways"
+    },
+    "abp_ms_test.AdministrationService": {
+      "path": "services/administration/abp_ms_test.AdministrationService.abpmdl",
+      "folder": "services"
+    },
+    "abp_ms_test.IdentityService": {
+      "path": "services/identity/abp_ms_test.IdentityService.abpmdl",
+      "folder": "services"
+    },
+    "abp_ms_test.ProductService": {
+      "path": "services/product/abp_ms_test.ProductService.abpmdl",
+      "folder": "services"
+    },
+    "abp_ms_test.SaasService": {
+      "path": "services/saas/abp_ms_test.SaasService.abpmdl",
+      "folder": "services"
+    }
+  },
+  "runProfiles": {
+    "Default": {
+      "path": "etc/run-profiles/Default.abprun.json"
+    }
+  }
+}

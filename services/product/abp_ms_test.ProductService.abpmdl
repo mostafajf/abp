@@ -1,0 +1,62 @@
+{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "abp_ms_test.ProductService.Domain.Shared": {
+      "path": "src/abp_ms_test.ProductService.Domain.Shared/abp_ms_test.ProductService.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "abp_ms_test.ProductService.Domain": {
+      "path": "src/abp_ms_test.ProductService.Domain/abp_ms_test.ProductService.Domain.abppkg",
+      "folder": "src"
+    },
+    "abp_ms_test.ProductService.Application.Contracts": {
+      "path": "src/abp_ms_test.ProductService.Application.Contracts/abp_ms_test.ProductService.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "abp_ms_test.ProductService.Application": {
+      "path": "src/abp_ms_test.ProductService.Application/abp_ms_test.ProductService.Application.abppkg",
+      "folder": "src"
+    },
+    "abp_ms_test.ProductService.EntityFrameworkCore": {
+      "path": "src/abp_ms_test.ProductService.EntityFrameworkCore/abp_ms_test.ProductService.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "abp_ms_test.ProductService.HttpApi": {
+      "path": "src/abp_ms_test.ProductService.HttpApi/abp_ms_test.ProductService.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "abp_ms_test.ProductService.HttpApi.Client": {
+      "path": "src/abp_ms_test.ProductService.HttpApi.Client/abp_ms_test.ProductService.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "abp_ms_test.ProductService.HttpApi.Host": {
+      "path": "src/abp_ms_test.ProductService.HttpApi.Host/abp_ms_test.ProductService.HttpApi.Host.abppkg",
+      "folder": "src"
+    },
+    "abp_ms_test.ProductService.Web": {
+      "path": "src/abp_ms_test.ProductService.Web/abp_ms_test.ProductService.Web.abppkg",
+      "folder": "src"
+    },
+    "abp_ms_test.ProductService.Application.Tests": {
+      "path": "test/abp_ms_test.ProductService.Application.Tests/abp_ms_test.ProductService.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "abp_ms_test.ProductService.Domain.Tests": {
+      "path": "test/abp_ms_test.ProductService.Domain.Tests/abp_ms_test.ProductService.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "abp_ms_test.ProductService.EntityFrameworkCore.Tests": {
+      "path": "test/abp_ms_test.ProductService.EntityFrameworkCore.Tests/abp_ms_test.ProductService.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "abp_ms_test.ProductService.TestBase": {
+      "path": "test/abp_ms_test.ProductService.TestBase/abp_ms_test.ProductService.TestBase.abppkg",
+      "folder": "test"
+    }
+  }
+}

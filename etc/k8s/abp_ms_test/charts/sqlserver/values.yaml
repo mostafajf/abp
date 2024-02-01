@@ -1,0 +1,6 @@
+namespace: abp_ms_test
+name: mssql-data
+sc : "managed-csi"
+pvc:
+    enabled: true
+    size: 8Gi

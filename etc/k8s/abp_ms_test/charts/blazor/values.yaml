@@ -1,0 +1,18 @@
+config:
+  selfUrl: # https://blazor.abp_ms_test.dev
+  gatewayUrl: # https://gateway-web.abp_ms_test.dev
+  authServer:
+      authority: # https://abp_ms_test-st-authserver
+      responseType: "code"
+  AbpLicenseCode: #
+
+ingress:
+  host: # blazor.abp_ms_test.dev
+  tlsSecret: abp_ms_test-tls
+
+image:
+  repository: mycompanyname/abp_ms_test-app-blazor
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env: {}
