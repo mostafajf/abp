@@ -43,6 +43,7 @@ using Volo.Abp.OpenIddict;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
 using Volo.Abp.Security.Claims;
+using Volo.Abp.Timing;
 
 namespace abp_ms_test.AuthServer;
 
@@ -116,7 +117,10 @@ public class abp_ms_testAuthServerModule : AbpModule
         ConfigureSwagger(context, configuration);
         ConfigureSameSiteCookiePolicy(context);
         ConfigureExternalProviders(context);
-
+        Configure<AbpClockOptions>(options =>
+        {
+            options.Kind = DateTimeKind.Utc;
+        });
         Configure<AbpMultiTenancyOptions>(options =>
         {
             options.IsEnabled = true;

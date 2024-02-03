@@ -10,6 +10,8 @@ using abp_ms_test.Shared.Hosting;
 using Volo.Abp.Modularity;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
+using Volo.Abp.Timing;
+using System;
 
 namespace abp_ms_test.DbMigrator;
 
@@ -30,5 +32,9 @@ public class abp_ms_testDbMigratorModule : AbpModule
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         Configure<AbpDistributedCacheOptions>(options => { options.KeyPrefix = "abp_ms_test:"; });
+        Configure<AbpClockOptions>(options =>
+       {
+           options.Kind = DateTimeKind.Utc;
+       });
     }
 }
