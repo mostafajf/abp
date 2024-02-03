@@ -13,7 +13,7 @@ using abp_ms_test.SaasService.EntityFrameworkCore;
 namespace abp_ms_test.SaasService.Migrations
 {
     [DbContext(typeof(SaasServiceDbContext))]
-    [Migration("20240203050832_Initial")]
+    [Migration("20240203051250_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
