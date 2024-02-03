@@ -16,6 +16,7 @@ using Prometheus;
 using Volo.Abp;
 using Volo.Abp.Modularity;
 using Volo.Abp.Security.Claims;
+using Volo.Abp.Timing;
 
 namespace abp_ms_test.SaasService;
 
@@ -32,7 +33,10 @@ public class SaasServiceHttpApiHostModule : AbpModule
         // Enable if you need these
         // var hostingEnvironment = context.Services.GetHostingEnvironment();
         var configuration = context.Services.GetConfiguration();
-
+        Configure<AbpClockOptions>(options =>
+                      {
+                          options.Kind = DateTimeKind.Utc;
+                      });
         context.Services.AddAbpDbContext<SaasServiceDbContext>();
         JwtBearerConfigurationHelper.Configure(context, "SaasService");
         SwaggerConfigurationHelper.ConfigureWithOidc(

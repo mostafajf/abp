@@ -20,6 +20,7 @@ using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.Security.Claims;
+using Volo.Abp.Timing;
 
 namespace abp_ms_test.IdentityService;
 
@@ -68,7 +69,10 @@ public class IdentityServiceHttpApiHostModule : AbpModule
                     .AllowCredentials();
             });
         });
-
+        Configure<AbpClockOptions>(options =>
+                      {
+                          options.Kind = DateTimeKind.Utc;
+                      });
         Configure<AbpAspNetCoreMvcOptions>(options =>
         {
             options.ExposeIntegrationServices = true;

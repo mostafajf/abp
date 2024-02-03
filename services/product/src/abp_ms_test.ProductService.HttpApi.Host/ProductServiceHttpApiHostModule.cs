@@ -15,6 +15,7 @@ using Prometheus;
 using Volo.Abp;
 using Volo.Abp.Modularity;
 using Volo.Abp.Security.Claims;
+using Volo.Abp.Timing;
 
 namespace abp_ms_test.ProductService;
 
@@ -31,7 +32,10 @@ public class ProductServiceHttpApiHostModule : AbpModule
         // Enable if you need these
         // var hostingEnvironment = context.Services.GetHostingEnvironment();
         var configuration = context.Services.GetConfiguration();
-
+        Configure<AbpClockOptions>(options =>
+                      {
+                          options.Kind = DateTimeKind.Utc;
+                      });
         JwtBearerConfigurationHelper.Configure(context, "ProductService");
         SwaggerConfigurationHelper.ConfigureWithOidc(
             context: context,

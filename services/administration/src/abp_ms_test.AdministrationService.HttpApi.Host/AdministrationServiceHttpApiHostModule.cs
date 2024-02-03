@@ -23,6 +23,7 @@ using Volo.Abp.SettingManagement;
 using Volo.Abp.TextTemplateManagement;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.Security.Claims;
+using Volo.Abp.Timing;
 
 namespace abp_ms_test.AdministrationService;
 
@@ -78,7 +79,10 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
                     .AllowCredentials();
             });
         });
-
+        Configure<AbpClockOptions>(options =>
+               {
+                   options.Kind = DateTimeKind.Utc;
+               });
         Configure<PermissionManagementOptions>(options =>
         {
             options.IsDynamicPermissionStoreEnabled = true;
