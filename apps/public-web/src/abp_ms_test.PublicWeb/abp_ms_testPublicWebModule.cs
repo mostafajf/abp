@@ -36,6 +36,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonX;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonX.Bundling;
 using Volo.Abp.LeptonX.Shared;
 using Volo.Abp.Security.Claims;
+using Volo.Abp.Timing;
 
 namespace abp_ms_test.PublicWeb;
 
@@ -106,7 +107,10 @@ public class abp_ms_testPublicWebModule : AbpModule
         {
             options.KeyPrefix = "abp_ms_test:";
         });
-
+        Configure<AbpClockOptions>(options =>
+               {
+                   options.Kind = DateTimeKind.Utc;
+               });
         Configure<AppUrlOptions>(options =>
         {
             options.Applications["MVC"].RootUrl = configuration["App:SelfUrl"];
